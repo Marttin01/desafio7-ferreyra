@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { userGetController, userRegisterController } from "../../../controllers/api/userController.js";
+import { userGetController } from "../../../controllers/api/userController.js";
 
 export const userRouter = Router()
 
-userRouter.post('/register', userRegisterController)   //postUsers
+// userRouter.post('/register', userRegisterController)   //postUsers MANEJADO POR PASSPORT
 
 userRouter.get('/', userGetController) //getUsers
 

@@ -1,9 +1,11 @@
 import { Router } from "express";
-import { logoutSessionController, postSessionController } from "../../../controllers/api/sessionController.js";
-import { autenticacionGitHub, autenticacionPorGitHub_CB, autenticacionUserPass } from "../../../middlewares/passport.js";
+import { logoutSessionController, postSessionController, registerSessionController } from "../../../controllers/api/sessionController.js";
+import { autenticacionGitHub, autenticacionPorGitHub_CB, autenticacionUserPass, registerUserPass } from "../../../middlewares/passport.js";
 
 export const sessionRouter = Router()
 
+//register
+sessionRouter.post('/register', registerUserPass, registerSessionController)
 //login local
 sessionRouter.post('/', autenticacionUserPass ,postSessionController)
 //login con github

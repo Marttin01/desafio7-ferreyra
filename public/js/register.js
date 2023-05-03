@@ -24,15 +24,17 @@ if(formRegister instanceof HTMLFormElement){
             }
 
     
-                const usuarioCreado = await fetch('/api/users/register', {
+                const usuarioCreado = await fetch('/api/sessions/register/', {
                     method:'POST',
                     headers: {
-                        'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(datosUser)
-                }).then(res => res.json())
-                console.log(usuarioCreado)
+                })
+
+                if(usuarioCreado.status === 201 ) {
+                    window.location.replace('/')
+                }
             
          
         }
