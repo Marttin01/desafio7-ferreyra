@@ -13,7 +13,3 @@ export function postSessionController (req,res) {
     res.sendStatus(201)
 }
 
-export function registerSessionController (req,res) {
-    console.log('Paso por el registerSession')
-    res.sendStatus(201)
-}

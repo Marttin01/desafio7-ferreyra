@@ -1,0 +1,1 @@
+El proyecto se corre en la carpeta ./src y dentro de ./server esta para iniciar el servidor 

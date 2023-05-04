@@ -20,43 +20,6 @@ passport.use('local', new LocalStrategy({usernameField: 'email' }, async (userna
         
 }))
 
-passport.use('register', new LocalStrategy({ passReqToCallback: true}, async (req, _u, _p, done) => {
-
-    // console.log(req.body)
-    
-
-
-    try {
-        
-        let exist = await userModel.findOne({email:req.body.email})
-
-    if(exist){
-        throw new Error('Usuario ya registrado')
-    }
-
-    if(req.body.email === 'adminCoder@coder.com' && req.body.password === 'adminCod3r123'){
-        req.body.rol = 'admin'
-    }else{
-        req.body.rol= 'user'
-    }
-
-    const {first_name, last_name, email, password, rol } = req.body
-
-    const user = {
-        first_name:first_name,
-        las_name:last_name,
-        email:email,
-        password: hashear(password),
-        rol:rol
-    }
-
-    await userModel.create({...user})
-
-    done(null,user)
-    } catch (error) {
-        done(error)
-    }
-}))
 
 passport.use('github', new GithubStrategy ({
     clientID: githubClientId,
@@ -76,7 +39,7 @@ passport.use('github', new GithubStrategy ({
     done(null,user)
 }))
 
-passport.serializeUser((user, next) => { next(null, user) })
+passport.serializeUser((user, next) => { next(null, user._id) })
 passport.deserializeUser((user, next) => { next(null, user) })
 
 export const passportInitialize = passport.initialize()

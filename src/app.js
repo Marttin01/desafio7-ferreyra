@@ -12,14 +12,15 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('./public'))
 
 app.use(sesion)
+app.use(passportInitialize, passportSession)
+
+app.use('/api', apiRouter )
+app.use('/', webRouter)
 
 app.engine('handlebars', engine())
 app.set('views', './views')
 app.set('view engine', 'handlebars')
 
-app.use(passportInitialize, passportSession)
 
-app.use('/api', apiRouter )
-app.use('/', webRouter)
 
 

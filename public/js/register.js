@@ -24,7 +24,7 @@ if(formRegister instanceof HTMLFormElement){
             }
 
     
-                const usuarioCreado = await fetch('/api/sessions/register/', {
+                const usuarioCreado = await fetch('/api/users/register/', {
                     method:'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ if(formRegister instanceof HTMLFormElement){
                 })
 
                 if(usuarioCreado.status === 201 ) {
-                    window.location.replace('/')
+                    window.location.replace('/profile')
                 }
             
          
